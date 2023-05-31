@@ -39,10 +39,7 @@ loss_factor = exp(-(loss/8.6860000037)*Length);
 
 %# Utility constant
 pi_half_delay = time_delay(-pi/2, delay_factor);
+maximun_time_delay = time_delay(2*pi, delay_factor);
 pi_half_delay_sample = discrete_sample_delay(-pi/2, delay_factor, sample_time);
 
-%#Utility Functions
-function t = time_delay(phi, delay_factor) 
-    p = wrapTo2Pi(phi);
-    t = p*delay_factor;
-end
+
