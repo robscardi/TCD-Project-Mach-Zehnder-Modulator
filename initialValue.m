@@ -35,7 +35,7 @@ confinment_factor = 0.32;
     
 V_pi = (wavelenght*gap)/((n0^3)*confinment_factor*r33*Length);
 
-loss_factor = exp((loss/8.6860000037)*Length);
+loss_factor = exp(-(loss/8.6860000037)*Length);
 
 %# Utility constant
 pi_half_delay = time_delay(-pi/2, delay_factor);
