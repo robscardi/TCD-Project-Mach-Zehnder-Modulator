@@ -24,7 +24,7 @@ sample_time = 1/sample_frequency;
 delay_factor = 1/(2*pi*adj_frequency);
 
 %WAVEGUIDE VALUES
-kL_factor = pi/4;
+kL_factor = pi/3;
 loss = 0*dB/m;
 Length = 5*cm;
 gap = 6*um;
