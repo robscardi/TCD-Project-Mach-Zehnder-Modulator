@@ -23,9 +23,12 @@ sample_time = 1/sample_frequency;
 
 delay_factor = 1/(2*pi*adj_frequency);
 
-%WAVEGUIDE VALUES
-kL_factor = pi/3;
-loss = 0*dB/m;
+% WAVEGUIDE VALUES
+kL_factor_s = pi/4;
+kL_factor_c = pi/4;
+
+loss_1 = 0*dB/m;
+loss_2 = 0*dB/m;
 Length = 5*cm;
 gap = 6*um;
 
@@ -35,9 +38,10 @@ confinment_factor = 0.32;
     
 V_pi = (wavelenght*gap)/((n0^3)*confinment_factor*r33*Length);
 
-loss_factor = exp(-(loss/8.6860000037)*Length);
+loss_factor_1 = exp(-(loss_1/8.6860000037)*Length);
+loss_factor_2 = exp(-(loss_2/8.6860000037)*Length);
 
-%# Utility constant
+% Utility constant
 pi_half_delay = time_delay(-pi/2, delay_factor);
 maximun_time_delay = time_delay(2*pi, delay_factor);
 pi_half_delay_sample = discrete_sample_delay(-pi/2, delay_factor, sample_time);
