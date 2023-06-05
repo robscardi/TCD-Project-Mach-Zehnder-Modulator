@@ -16,9 +16,9 @@ dB = 1;
 wavelenght = 1550*nm;
 frequency = (3e8)/wavelenght;
 time_period = 1/frequency;
-prop_factor = 10000000;
+prop_factor = 1000000000;
 adj_frequency = frequency/prop_factor;
-sample_frequency = adj_frequency*100;
+sample_frequency = adj_frequency*10000;
 sample_time = 1/sample_frequency;
 
 delay_factor = 1/(2*pi*adj_frequency);
@@ -46,4 +46,6 @@ pi_half_delay = time_delay(-pi/2, delay_factor);
 maximun_time_delay = time_delay(2*pi, delay_factor);
 pi_half_delay_sample = discrete_sample_delay(-pi/2, delay_factor, sample_time);
 
+initial_buffer = 1024*10;
 
+generate_input
