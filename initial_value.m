@@ -13,8 +13,10 @@ dB = 1;
 
 
 %LASER VALUES
-wavelenght = 1550*nm;
-frequency = (3e8)/wavelenght;
+
+
+wavelength = 1550*nm;
+frequency = (3e8)/wavelength;
 time_period = 1/frequency;
 prop_factor = 1000000000;
 adj_frequency = frequency/prop_factor;
@@ -36,7 +38,7 @@ r33 = 30.8e-12;
 n0 = 2.2111;  
 confinment_factor = 0.32;
     
-V_pi = (wavelenght*gap)/((n0^3)*confinment_factor*r33*Length);
+V_pi = (wavelength*gap)/((n0^3)*confinment_factor*r33*Length);
 
 loss_factor_1 = exp(-(loss_1/8.6860000037)*Length);
 loss_factor_2 = exp(-(loss_2/8.6860000037)*Length);
@@ -48,4 +50,3 @@ pi_half_delay_sample = discrete_sample_delay(-pi/2, delay_factor, sample_time);
 
 initial_buffer = 1024*10;
 
-generate_input
