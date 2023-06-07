@@ -16,6 +16,7 @@ sample_time = model_workspace.getVariable('sample_time');
 V_pi = model_workspace.getVariable('V_pi');
 bit_sample = model_workspace.getVariable('bit_sample');
 
+in(num_sims) = Simulink.SimulationInput(mdl);
 
 for j= 1:num_sims
     in(j) = Simulink.SimulationInput(mdl);
@@ -23,10 +24,10 @@ for j= 1:num_sims
         'RapidAcceleratorUpToDateCheck', 'on');
     in(j).PreSimFcn = @(x) generate_input(sample_time, ...
         bit_sample, input_dim, V_pi);
-    
 end
+in.setPostSimFcn(@(out) extintion_rate(out, bit_sample));
 
-out = parsim(in, 'ShowProgress', 'on');
+out = parsim(in, 'ShowProgress', 'on', 'ShowSimulationManager','on');
 
 
 figure(Name='extinction rate')
@@ -34,10 +35,7 @@ yline(10, '-')
 hold on
 grid on
 for j = 1:num_sims
-    o = out(j);
-    logs = get(o, 'logsout');
-    d = get(logs, 'OUT2').Values;
-    er = extintion_rate(d, bit_sample);
+    er = extintion_rate(out(j), bit_sample);
     scatter(j, er)
 end
 hold off
@@ -45,7 +43,6 @@ hold off
 if(~is_model_open)
     close_system(mdl, 0);
 end
-delete(gcp('nocreate'));
 
 
 

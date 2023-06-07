@@ -1,4 +1,7 @@
-function er = extintion_rate(timeseries, bit_samples)
+function er = extintion_rate(out, bit_samples)
+    
+    logs = get(out, 'logsout');
+    timeseries = get(logs, 'OUT2').Values;
     d = get(timeseries, 'Data');
     data = d.^2;
     total_sample = numel(data);
@@ -8,9 +11,12 @@ function er = extintion_rate(timeseries, bit_samples)
     high = zeros(1, bit_num);
     n_high = 0;
     c = 1;
+    %number of invalid samples
+    begin_valid = 75;
+
     for j = (1:bit_num)
         
-        bit = data(c:c+bit_samples-1);
+        bit = data(c+begin_valid:c+bit_samples-1);
         r = mean(bit, "all");
         if( r >= 0 && r < 0.25)
             n_low = n_low +1;

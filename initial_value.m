@@ -11,29 +11,31 @@ v = 1;
 dB = 1;
 
 %% LASER VALUES
-wavelength = 1550*nm;
+wavelength = 1550*nm; % LASER WAVELENGTH
 frequency = (3e8)/wavelength;
 time_period = 1/frequency;
-prop_factor = 10000000;
-adj_frequency = frequency/prop_factor;
-sample_frequency = adj_frequency*100;
-sample_time = 1/sample_frequency;
 
+%% SIMULATION VALUES
+prop_factor = 10000000; % DO NOT TOUCH
+adj_frequency = frequency/prop_factor; % DO NOT TOUCH
+sample_frequency = adj_frequency*100; % DO NOT TOUCH
+sample_time = 1/sample_frequency;
 delay_factor = 1/(2*pi*adj_frequency);
 
 %% WAVEGUIDE VALUES
-kL_factor_s = pi/4;
-kL_factor_c = pi/4;
+kL_factor_s = pi/4; % COUPLING FACTOR SPLITTER
+kL_factor_c = pi/4; % COUPLING FACTOR COMBINER
 
-loss_1 = 0*dB/m;
-loss_2 = 0*dB/m;
-Length = 5*cm;
-gap = 6*um;
+loss_1 = 0*dB/m; % ATTENUATION COEFFICIENT FIRST LINE
+loss_2 = 0*dB/m; % ATTENUATION COEFFICIENT FIRST LINE
 
-r33 = 30.8e-12;
-n0 = 2.2111;  
-confinment_factor = 0.32;
-    
+Length = 5*cm; % LINES LENGHT
+gap = 6*um; % GAP BETWEEN DELAY LINE'S ELECTRODE
+
+r33 = 30.8e-12; % LiNbO3 r33
+n0 = 2.2111;    % LiNbO3 refractive index
+confinment_factor = 0.32; % GUIDE'S CONFINMENT FACTOR
+
 V_pi = (wavelength*gap)/((n0^3)*confinment_factor*r33*Length);
 
 loss_factor_1 = exp(-(loss_1/8.6860000037)*Length);
@@ -49,10 +51,10 @@ initial_buffer = 1024*10;
 
 %% SAMPLE AND SIMULTATION TIME
 period = 1/adj_frequency;
-n_camp = 25*round(period/sample_time);
+n_camp = 25*round(period/sample_time); 
 
 bit_sample = n_camp;
-input_dim = 26;
+input_dim = 26; % NUMBER OF BIT
 
 bit_time = sample_time*bit_sample;
 
