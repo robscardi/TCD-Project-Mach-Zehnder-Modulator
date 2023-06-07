@@ -1,5 +1,6 @@
 function er = extintion_rate(out, bit_samples)
-    
+    % Calculate the extintion rate from a timeseries object (out)
+    % and the length in sample of the bit time (bit samples)
     logs = get(out, 'logsout');
     timeseries = get(logs, 'OUT2').Values;
     d = get(timeseries, 'Data');

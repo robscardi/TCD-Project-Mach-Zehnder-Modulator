@@ -4,6 +4,9 @@
 
 function generate_input(sample_time, bit_sample, input_dim, V_pi)
 
+% Generate random input with sample time (sample_time), bit time in number of
+% sample, number of bit (input_dim), pi-voltage (V_pi) 
+
 standard_deviation = 0.1;
 data = round(rand(1, input_dim))*V_pi + randn(1, input_dim).*standard_deviation;
 

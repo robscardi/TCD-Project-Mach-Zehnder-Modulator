@@ -1,6 +1,7 @@
 clearvars
 close all
 
+% Initialize the model's parameters
 %% UNIT MEASURE
 m = 1;
 cm = 1e-2;

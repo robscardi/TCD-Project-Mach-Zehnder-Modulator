@@ -1,7 +1,7 @@
 
 clearvars
 close all
-%MACH-ZENDER SIMULATION
+%MACH-ZEHNDER SIMULATION
 
 %% UNIT MEASURE
 m = 1;
@@ -10,7 +10,6 @@ um = 1e-6;
 nm = 1e-9;
 pm = 1e-12;
 V = 1;
-
 
 %% GUIDE PARAMETERS
 gap = 6* um;      % gap between electrode
