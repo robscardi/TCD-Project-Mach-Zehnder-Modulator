@@ -7,7 +7,7 @@ open_system(mdl);
 
 is_model_open = bdIsLoaded(mdl);
 
-num_sims = 500; % NUMBER OF SIMULATIONS
+num_sims = 1; % NUMBER OF SIMULATIONS
 
 model_workspace= get_param(mdl, 'ModelWorkspace');
 

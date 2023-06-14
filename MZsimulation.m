@@ -147,9 +147,9 @@ end
     hold off
     legend
     grid on
-    xlabel("loss [db/cm]");
-    ylabel("Extinction rate [db] port 1")
-    title("Extinction rate port 1")
+    xlabel("loss [dB/cm]");
+    ylabel("Extinction rate [dB]")
+    title("Extinction rate BAR")
    
 
     %plot ER2
@@ -166,8 +166,8 @@ end
     legend
     grid on
     xlabel("loss [dB/cm]");
-    ylabel("Extinction rate [dB] port 2")
-    title("Extinction rate port 2")
+    ylabel("Extinction rate [dB]")
+    title("Extinction rate CROSS")
 
 %% PLOT output - loss - kL 
     figure(Name="output / loss - kL ");
@@ -184,7 +184,7 @@ end
     legend
     xlabel("Loss [dB/cm]")
     ylabel("Intensity output [(V/m)^2]" )
-    title("Output high port 1")
+    title("Output high BAR")
     
     nexttile
     plot(alpha, abs(result_vector_high(2,:,1)).^2, DisplayName="kL Factor = " + kL_factor_s(1)/pi + "pi")
@@ -197,7 +197,7 @@ end
     legend
     xlabel("Loss [dB/cm]")
     ylabel("Intensity output [(V/m)^2]" )
-    title("Output high port 2")
+    title("Output high CROSS")
 
     nexttile
     plot(alpha, abs(result_vector_low(1,:,1)).^2, DisplayName="kL Factor = " + kL_factor_s(1)/pi + "pi")
@@ -210,7 +210,7 @@ end
     legend
     xlabel("Loss [dB/cm]")
     ylabel("Intensity output [(V/m)^2]" )
-    title("Output low port 1")
+    title("Output low BAR")
 
     nexttile
     plot(alpha, abs(result_vector_low(2,:,1)).^2, DisplayName="kL Factor = " + kL_factor_s(1)/pi + "pi")
@@ -223,7 +223,7 @@ end
     legend
     xlabel("Loss [dB/cm]")
     ylabel("Intensity output [(V/m)^2]" )
-    title("Output low port 2")
+    title("Output low CROSS")
 
 
 %% SETTINGS : fixed alpha, varying coupling coefficient 
@@ -349,8 +349,8 @@ tiledlayout(1,2)
     legend
     grid on
     xlabel("Coupling factor splitter")
-    ylabel("Extinction rate [db] port 1")
-    title("Extinction rate port 1")
+    ylabel("Extinction rate [db]")
+    title("Extinction rate BAR")
    
 
     %plot ER2
@@ -368,8 +368,8 @@ tiledlayout(1,2)
     grid on
     legend
     xlabel("Coupling factor splitter")
-    ylabel("Extinction rate [db] port 2")
-    title("Extinction rate port 2")
+    ylabel("Extinction rate [db]")
+    title("Extinction rate CROSS")
 
 
 %% SETTINGS : varying RF input, fixed alpha/coupling factor
@@ -460,7 +460,7 @@ grid on
 legend
 xlabel("RF [V]")
 ylabel("ER [dB]")
-title("ER/RF port 1")
+title("ER/RF BAR")
 
 nexttile
 yline(10, ":r", "label","ER=10dB", "HandleVisibility","off")
@@ -480,7 +480,7 @@ grid on
 legend
 xlabel("RF [V]")
 ylabel("ER [dB]") 
-title("ER/RF port 2")
+title("ER/RF CROSS")
 
 
 
