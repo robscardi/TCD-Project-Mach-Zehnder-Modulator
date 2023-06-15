@@ -10,7 +10,7 @@ is_model_open = bdIsLoaded(mdl);
 model_workspace= get_param(mdl, 'ModelWorkspace');
 
 
-model_workspace.assignin("input_dim", 100);
+model_workspace.assignin("input_dim", 50);
 bit_sample = model_workspace.getVariable('bit_sample');
 sample_time = model_workspace.getVariable('sample_time');
 input_dim = model_workspace.getVariable('input_dim');
