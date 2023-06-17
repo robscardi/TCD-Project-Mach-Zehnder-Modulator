@@ -153,15 +153,15 @@ tiledlayout(1,2)
     nexttile
     yline(10, ":r", "label","ER=10dB", "HandleVisibility","off")
     yline(40, ":r", "label","ER=40dB", "HandleVisibility","off")
-    xline(pi/4, ":r", "label","pi/4", "HandleVisibility","off")
+    xline(1/4, ":r", "label","pi/4", "HandleVisibility","off")
     hold on
     for j=1:numel(alpha)
-        plot(kL_factor, ER_a1(j,:), DisplayName="alpha = " + alpha(j)*cm + " [dB/cm]")
+        plot(kL_factor./pi, ER_a1(j,:), DisplayName="alpha = " + alpha(j)*cm + " [dB/cm]")
     end
     hold off
     legend
     grid on
-    xlabel("Coupling factor splitter")
+    xlabel("Splitter Coupling Factor / Pi")
     ylabel("Extinction rate [db]")
     title("Extinction rate BAR")
    
@@ -170,15 +170,15 @@ tiledlayout(1,2)
     nexttile
     yline(10, ":r", "label","ER=10dB", "HandleVisibility","off")
     yline(40, ":r", "label","ER=40dB", "HandleVisibility","off")    
-    xline(pi/4, ":r", "label","pi/4", "HandleVisibility","off")
+    xline(1/4, ":r", "label","pi/4", "HandleVisibility","off")
     hold on
     for j=1:numel(alpha)
-        plot(kL_factor, ER_a2(j,:), DisplayName="alpha = " + alpha(j)*cm + " [dB/cm]")
+        plot(kL_factor./pi, ER_a2(j,:), DisplayName="alpha = " + alpha(j)*cm + " [dB/cm]")
     end
     hold off
     grid on
     legend
-    xlabel("Coupling factor splitter")
+    xlabel("Splitter Coupling Factor / Pi")
     ylabel("Extinction rate [db]")
     title("Extinction rate CROSS")
 
@@ -187,58 +187,58 @@ tiledlayout(1,2)
     tiledlayout(2,2)
     
     nexttile
-    plot(kL_factor, abs(result_vector_high(1,:,1)).^2, DisplayName="alpha = " + alpha(1)*cm + " [dB/cm]")
+    plot(kL_factor./pi, abs(result_vector_high(1,:,1)).^2, DisplayName="alpha = " + alpha(1)*cm + " [dB/cm]")
     hold on
-    xline(pi/4, ":r", "label","pi/4", "HandleVisibility","off")
+    xline(1/4, ":r", "label","pi/4", "HandleVisibility","off")
     for j = (2:numel(alpha))
-        plot(kL_factor, abs(result_vector_high(1,:,j)).^2, DisplayName="alpha = " + alpha(j)*cm + " [dB/cm]")
+        plot(kL_factor./pi, abs(result_vector_high(1,:,j)).^2, DisplayName="alpha = " + alpha(j)*cm + " [dB/cm]")
     end
     hold off
     grid on
     legend
-    xlabel("Loss [dB/cm]")
+    xlabel("Splitter Coupling Factor / Pi")
     ylabel("Intensity output [(V/m)^2]" )
     title("Output high BAR")
     
     nexttile
-    plot(kL_factor, abs(result_vector_high(2,:,1)).^2, DisplayName="alpha = " + alpha(1)*cm + " [dB/cm]")
+    plot(kL_factor./pi, abs(result_vector_high(2,:,1)).^2, DisplayName="alpha = " + alpha(1)*cm + " [dB/cm]")
     hold on
-    xline(pi/4, ":r", "label","pi/4", "HandleVisibility","off")
+    xline(1/4, ":r", "label","pi/4", "HandleVisibility","off")
     for j = (2:numel(alpha))
-        plot(kL_factor, abs(result_vector_high(2,:,j)).^2, DisplayName="alpha = " + alpha(j)*cm + " [dB/cm]")
+        plot(kL_factor./pi, abs(result_vector_high(2,:,j)).^2, DisplayName="alpha = " + alpha(j)*cm + " [dB/cm]")
     end
     hold off
     grid on
     legend("Box","on", "FontSize",12, "Tag","Coupling factor")
-    xlabel("Loss [dB/cm]")
+    xlabel("Splitter Coupling Factor / Pi")
     ylabel("Intensity output [(V/m)^2]" )
     title("Output high CROSS")
 
     nexttile
-    plot(kL_factor, abs(result_vector_low(1,:,1)).^2, DisplayName="alpha = " + alpha(1)*cm + " [dB/cm]")
+    plot(kL_factor./pi, abs(result_vector_low(1,:,1)).^2, DisplayName="alpha = " + alpha(1)*cm + " [dB/cm]")
     hold on
-    xline(pi/4, ":r", "label","pi/4", "HandleVisibility","off")
+    xline(1/4, ":r", "label","pi/4", "HandleVisibility","off")
     for j = (2:numel(alpha))
-        plot(kL_factor, abs(result_vector_low(1,:,j)).^2, DisplayName="alpha = " + alpha(j)*cm + " [dB/cm]")
+        plot(kL_factor./pi, abs(result_vector_low(1,:,j)).^2, DisplayName="alpha = " + alpha(j)*cm + " [dB/cm]")
     end
     hold off
     grid on
     legend
-    xlabel("Loss [dB/cm]")
+    xlabel("Splitter Coupling Factor / Pi")
     ylabel("Intensity output [(V/m)^2]" )
     title("Output low BAR")
 
     nexttile
-    plot(kL_factor, abs(result_vector_low(2,:,1)).^2, DisplayName="alpha = " + alpha(1)*cm + " [dB/cm]")
+    plot(kL_factor./pi, abs(result_vector_low(2,:,1)).^2, DisplayName="alpha = " + alpha(1)*cm + " [dB/cm]")
     hold on
-    xline(pi/4, ":r", "label","pi/4", "HandleVisibility","off")
+    xline(1/4, ":r", "label","pi/4", "HandleVisibility","off")
     for j = (2:numel(alpha))
-        plot(kL_factor, abs(result_vector_low(2,:,j)).^2, DisplayName="alpha = " + alpha(j)*cm + " [dB/cm]")
+        plot(kL_factor./pi, abs(result_vector_low(2,:,j)).^2, DisplayName="alpha = " + alpha(j)*cm + " [dB/cm]")
     end
     hold off
     grid on
     legend
-    xlabel("Loss [dB/cm]")
+    xlabel("Splitter Coupling Factor / Pi")
     ylabel("Intensity output [(V/m)^2]" )
     title("Output low CROSS")
 
