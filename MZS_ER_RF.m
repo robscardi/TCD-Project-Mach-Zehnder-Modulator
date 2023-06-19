@@ -99,20 +99,21 @@ end
 
 %% PLOTS
 
-xBox = [RF(1),  RF(end), RF(end), RF(1), RF(1)];
 
 figure(Name="ER / RF")
 tiledlayout(2,1)
 nexttile
 yline(10, ":r", "label","ER=10dB", "HandleVisibility","off")
 yline(40, ":r", "label","ER=40dB", "HandleVisibility","off")
-xline(RF_pi, ":r", "label", "RF_p_i", "HandleVisibility","off")
+xline(RF_pi, ":r", "label", "RF_p_i", "HandleVisibility","off", "LineWidth",1.2)
 hold on
 
 for j = (1: numel(alpha(:, 1)))
     for k = (1: numel(kL_factor(:, 1)))
         data = squeeze(ER_rf1(j,k,:));
-        plot(RF, data, DisplayName="alpha= " + alpha(j,1)*cm + " [dB/cm]," +alpha(j,2)*cm + "[dB/cm],  kL= " + kL_factor(k,1)/pi + "*pi" + "," +kL_factor(k,2)/pi +"*pi") 
+        plot(RF, data, ...
+            DisplayName="alpha= " + alpha(j,1)*cm + " [dB/cm]," +alpha(j,2)*cm + "[dB/cm],  kL= " + kL_factor(k,1)/pi + "*pi" + "," +kL_factor(k,2)/pi +"*pi" ...
+            LineWidth=1.5) 
     end
 end
 
@@ -126,13 +127,15 @@ title("ER/RF BAR")
 nexttile
 yline(10, ":r", "label","ER=10dB", "HandleVisibility","off")
 yline(40, ":r", "label","ER=40dB", "HandleVisibility","off")
-xline(RF_pi, ":r", "label", "RF_p_i", "HandleVisibility","off")
+xline(RF_pi, ":r", "label", "RF_p_i", "HandleVisibility","off","LineWidth",1.2)
 hold on
 
 for j = (1: numel(alpha(:, 1)))
     for k = (1: numel(kL_factor(:, 1)))
         data = squeeze(ER_rf2(j,k,:));
-        plot(RF, data, DisplayName="alpha= " + alpha(j,1)*cm + " [dB/cm]," +alpha(j,2)*cm + " [dB/cm],  kL= " + kL_factor(k,1)/pi + "*pi" + "," +kL_factor(k,2)/pi + "*pi") 
+        plot(RF, data, ...
+            DisplayName="alpha= " + alpha(j,1)*cm + " [dB/cm]," +alpha(j,2)*cm + " [dB/cm],  kL= " + kL_factor(k,1)/pi + "*pi" + "," +kL_factor(k,2)/pi + "*pi", ...
+            LineWidth=1.5) 
     end
 end
 

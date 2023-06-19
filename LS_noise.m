@@ -17,7 +17,7 @@ V_pi        = model_workspace.getVariable('V_pi');
 bit_sample  = model_workspace.getVariable('bit_sample');
 
 %% ASSIGNING INPUT DIMENSION
-input_dim   = 50;
+input_dim   = 500;
 bit_time    = sample_time*bit_sample;
 total_time  = input_dim*bit_time;
 
@@ -77,3 +77,5 @@ hold off
 if(~is_model_open)
     close_system(mdl, 0);
 end
+delete(gcp('nocreate'));
+

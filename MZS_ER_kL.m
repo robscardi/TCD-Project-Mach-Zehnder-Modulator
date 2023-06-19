@@ -29,9 +29,9 @@ wavelength = 1550*nm;
 %guide
 Length = 5* cm;
 confinment_factor = 0.32;
-phi0 = ne*(Length).*(2*pi/wavelength);
+phi0 = no*(Length).*(2*pi/wavelength);
 
-RF_pi = (wavelength*gap)/((ne^3)*confinment_factor*r33*Length);
+RF_pi = (wavelength*gap)/((no^3)*confinment_factor*r33*Length);
 E_i_laser = 1*V;
 
 %% SETTINGS : fixed alpha, varying coupling coefficient 
@@ -112,7 +112,7 @@ for j = 1:numel(alpha)
         % RF HIGH
         RF_max_input = RF_pi;
 
-        dn=-(ne^3)*r33*confinment_factor*RF_max_input/(2*gap);
+        dn=-(no^3)*r33*confinment_factor*RF_max_input/(2*gap);
 
 
         d_phi = dn*(Length).*(2*pi/wavelength);
@@ -128,7 +128,7 @@ for j = 1:numel(alpha)
         %RF LOW
         RF_max_input = 0;
         
-        dn=-(ne^3)*r33*confinment_factor*RF_max_input/(2*gap);
+        dn=-(no^3)*r33*confinment_factor*RF_max_input/(2*gap);
         d_phi = dn*(Length)*(2*pi/wavelength);
         
         MC_matrix_2 = [1*exp((-1i*(phi0+d_phi))-loss), 0; 0, 1*exp(-1i*(phi0)-loss_2)];
@@ -144,19 +144,28 @@ end
 
 
 %% ER/kL Factor - Loss PLOTS
-figure(Name="ER/kL_factor - loss");
+hfig1 = figure(Name="ER/kL_factor - loss");
+
+    %Set figure config 
+    picturewidth = 20; % set this parameter and keep it forever
+    hw_ratio = 0.65; % feel free to play with this ratio
+    set(hfig1,'Units','centimeters','Position',[3 3 picturewidth hw_ratio*picturewidth])
+    set(findall(hfig1,'-property','FontSize'),'FontSize',17) % adjust fontsize to your document
+    fontname("CMU Sans Serif Demi Condensed")
+
+
 tiledlayout(1,2)
     
-
-    xBox = [kL_factor(1),  kL_factor(end), kL_factor(end), kL_factor(1), kL_factor(1)];
     %plot ER1
     nexttile
     yline(10, ":r", "label","ER=10dB", "HandleVisibility","off")
     yline(40, ":r", "label","ER=40dB", "HandleVisibility","off")
-    xline(1/4, ":r", "label","pi/4", "HandleVisibility","off")
+    xline(1/4, ":r", "label","pi/4", "HandleVisibility","off", "LineWidth",1.2)
     hold on
     for j=1:numel(alpha)
-        plot(kL_factor./pi, ER_a1(j,:), DisplayName="alpha = " + alpha(j)*cm + " [dB/cm]")
+        plot(kL_factor./pi, ER_a1(j,:), ...
+            DisplayName="alpha = " + alpha(j)*cm + " [dB/cm]", ...
+            LineWidth=1.5)
     end
     hold off
     legend
@@ -170,10 +179,12 @@ tiledlayout(1,2)
     nexttile
     yline(10, ":r", "label","ER=10dB", "HandleVisibility","off")
     yline(40, ":r", "label","ER=40dB", "HandleVisibility","off")    
-    xline(1/4, ":r", "label","pi/4", "HandleVisibility","off")
+    xline(1/4, ":r", "label","pi/4", "HandleVisibility","off","LineWidth",1.2)
     hold on
     for j=1:numel(alpha)
-        plot(kL_factor./pi, ER_a2(j,:), DisplayName="alpha = " + alpha(j)*cm + " [dB/cm]")
+        plot(kL_factor./pi, ER_a2(j,:), ...
+            DisplayName="alpha = " + alpha(j)*cm + " [dB/cm]", ...
+            LineWidth=1.5)
     end
     hold off
     grid on
@@ -187,11 +198,15 @@ tiledlayout(1,2)
     tiledlayout(2,2)
     
     nexttile
-    plot(kL_factor./pi, abs(result_vector_high(1,:,1)).^2, DisplayName="alpha = " + alpha(1)*cm + " [dB/cm]")
+    plot(kL_factor./pi, abs(result_vector_high(1,:,1)).^2, ...
+        DisplayName="alpha = " + alpha(1)*cm + " [dB/cm]", ...
+        LineWidth=1.5)
     hold on
     xline(1/4, ":r", "label","pi/4", "HandleVisibility","off")
     for j = (2:numel(alpha))
-        plot(kL_factor./pi, abs(result_vector_high(1,:,j)).^2, DisplayName="alpha = " + alpha(j)*cm + " [dB/cm]")
+        plot(kL_factor./pi, abs(result_vector_high(1,:,j)).^2, ...
+            DisplayName="alpha = " + alpha(j)*cm + " [dB/cm]", ...
+            LineWidth=1.5)
     end
     hold off
     grid on
@@ -201,25 +216,34 @@ tiledlayout(1,2)
     title("Output high BAR")
     
     nexttile
-    plot(kL_factor./pi, abs(result_vector_high(2,:,1)).^2, DisplayName="alpha = " + alpha(1)*cm + " [dB/cm]")
+    plot(kL_factor./pi, abs(result_vector_high(2,:,1)).^2, ...
+        DisplayName="alpha = " + alpha(1)*cm + " [dB/cm]", ...
+        LineWidth=1.5)
     hold on
     xline(1/4, ":r", "label","pi/4", "HandleVisibility","off")
     for j = (2:numel(alpha))
-        plot(kL_factor./pi, abs(result_vector_high(2,:,j)).^2, DisplayName="alpha = " + alpha(j)*cm + " [dB/cm]")
+        plot(kL_factor./pi, abs(result_vector_high(2,:,j)).^2, ...
+            DisplayName="alpha = " + alpha(j)*cm + " [dB/cm]", ...
+            LineWidth=1.5)
     end
     hold off
     grid on
-    legend("Box","on", "FontSize",12, "Tag","Coupling factor")
+    legend
     xlabel("Splitter Coupling Factor / Pi")
     ylabel("Intensity output [(V/m)^2]" )
     title("Output high CROSS")
 
     nexttile
-    plot(kL_factor./pi, abs(result_vector_low(1,:,1)).^2, DisplayName="alpha = " + alpha(1)*cm + " [dB/cm]")
+    plot(kL_factor./pi, abs(result_vector_low(1,:,1)).^2, ...
+        DisplayName="alpha = " + alpha(1)*cm + " [dB/cm]", ...
+        LineWidth=1.5)
     hold on
-    xline(1/4, ":r", "label","pi/4", "HandleVisibility","off")
+    xline(1/4, ":r", "label","pi/4", "HandleVisibility","off", ...
+        "LineWidth", 1.2)
     for j = (2:numel(alpha))
-        plot(kL_factor./pi, abs(result_vector_low(1,:,j)).^2, DisplayName="alpha = " + alpha(j)*cm + " [dB/cm]")
+        plot(kL_factor./pi, abs(result_vector_low(1,:,j)).^2, ...
+            DisplayName="alpha = " + alpha(j)*cm + " [dB/cm]", ...
+            LineWidth=1.5)
     end
     hold off
     grid on
@@ -229,11 +253,16 @@ tiledlayout(1,2)
     title("Output low BAR")
 
     nexttile
-    plot(kL_factor./pi, abs(result_vector_low(2,:,1)).^2, DisplayName="alpha = " + alpha(1)*cm + " [dB/cm]")
+    plot(kL_factor./pi, abs(result_vector_low(2,:,1)).^2, ...
+        DisplayName="alpha = " + alpha(1)*cm + " [dB/cm]", ...
+        LineWidth=1.5)
     hold on
-    xline(1/4, ":r", "label","pi/4", "HandleVisibility","off")
+    xline(1/4, ":r", "label","pi/4", "HandleVisibility","off", ...
+        "LineWidth", 1.2)
     for j = (2:numel(alpha))
-        plot(kL_factor./pi, abs(result_vector_low(2,:,j)).^2, DisplayName="alpha = " + alpha(j)*cm + " [dB/cm]")
+        plot(kL_factor./pi, abs(result_vector_low(2,:,j)).^2, ...
+            DisplayName="alpha = " + alpha(j)*cm + " [dB/cm]", ...
+            LineWidth=1.5)
     end
     hold off
     grid on
