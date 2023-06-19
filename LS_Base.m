@@ -7,7 +7,7 @@ open_system(mdl);
 
 is_model_open = bdIsLoaded(mdl);
 
-num_sims = 500; % NUMBER OF SIMULATIONS
+num_sims = 500; % NUMBER OF RUNS
 
 model_workspace = get_param(mdl, 'ModelWorkspace');
 
@@ -37,24 +37,27 @@ end
 out = parsim(in, 'ShowProgress', 'on', 'ShowSimulationManager','on');
 
 er = zeros(1, num_sims);
-bit_error_rate = zeros(1, num_sims);
+bit_error = zeros(1, num_sims);
 for j = 1:num_sims
     er(j) = extintion_rate(out(j), bit_sample);
-    bit_error_rate(j) = error_bit(out(j), bit_sample, unalts(j), V_pi/2)/input_dim;
+    bit_error(j) = error_bit(out(j), bit_sample, unalts(j), V_pi/2);
 end
 
 m_er = mean(er);
 s_er = std(er);
-m_eb = mean(bit_error_rate);
-s_eb = std(bit);
+m_eb = mean(bit_error./input_dim);
+s_eb = std(bit_error_rate./input_dim);
 
 
 figure(Name='extinction rate')
-yline(10, '-')
+yline(10, '-', 'label', "ER = 10[dB")
+yline(40, '-', 'label', "ER = 40[dB")
 hold on
-yline(m, '.')
-scatter((1:num_sims), er, 'filled')
-scatter((1:num_sims), bit_error_rate, 'black')
+yline(m_er, '.', 'LineWidth', 1.5, 'Color','black', 'Label',  "Average Extinction Rate")
+scatter((1:num_sims), er, 'red', 'o', 'filled')
+scatter((1:num_sims), bit_error, 'black')
+ylabel("Extinction Rate [dB]"),
+xlabel("# Run")
 grid on
 
 hold off
