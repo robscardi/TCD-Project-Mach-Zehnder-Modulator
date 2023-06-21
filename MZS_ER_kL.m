@@ -194,10 +194,18 @@ tiledlayout(1,2)
     title("Extinction rate CROSS")
 
 %% PLOT output - loss - kL 
-    figure(Name="output / loss - kL ");
-    tiledlayout(2,2)
+hfig2 = figure(Name="output / loss - kL ");
+
+    %Set figure config 
+    picturewidth = 20; % set this parameter and keep it forever
+    hw_ratio = 0.65; % feel free to play with this ratio
+    set(hfig1,'Units','centimeters','Position',[3 3 picturewidth hw_ratio*picturewidth])
+    set(findall(hfig1,'-property','FontSize'),'FontSize',17) % adjust fontsize to your document
+    fontname("CMU Sans Serif Demi Condensed")
+
+tiledlayout(2,2)
     
-    nexttile
+nexttile
     plot(kL_factor./pi, abs(result_vector_high(1,:,1)).^2, ...
         DisplayName="alpha = " + alpha(1)*cm + " [dB/cm]", ...
         LineWidth=1.5)
@@ -215,7 +223,7 @@ tiledlayout(1,2)
     ylabel("Intensity output [(V/m)^2]" )
     title("Output high BAR")
     
-    nexttile
+nexttile
     plot(kL_factor./pi, abs(result_vector_high(2,:,1)).^2, ...
         DisplayName="alpha = " + alpha(1)*cm + " [dB/cm]", ...
         LineWidth=1.5)
@@ -233,7 +241,7 @@ tiledlayout(1,2)
     ylabel("Intensity output [(V/m)^2]" )
     title("Output high CROSS")
 
-    nexttile
+nexttile
     plot(kL_factor./pi, abs(result_vector_low(1,:,1)).^2, ...
         DisplayName="alpha = " + alpha(1)*cm + " [dB/cm]", ...
         LineWidth=1.5)
@@ -252,7 +260,7 @@ tiledlayout(1,2)
     ylabel("Intensity output [(V/m)^2]" )
     title("Output low BAR")
 
-    nexttile
+nexttile
     plot(kL_factor./pi, abs(result_vector_low(2,:,1)).^2, ...
         DisplayName="alpha = " + alpha(1)*cm + " [dB/cm]", ...
         LineWidth=1.5)

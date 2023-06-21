@@ -61,6 +61,8 @@ total_time  = input_dim*bit_time;       % TOTAL SIMULATION TIME
 
 std_dev = 0.1;                          % NOISE STANDARD DEVIATION
 
+set_param('MZexample', 'StopTime', string(total_time));
+
 [noise_ts, unalt_ts] = generate_input(sample_time, bit_sample, input_dim, V_pi, std_dev);
 
 save("values")

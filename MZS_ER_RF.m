@@ -45,8 +45,8 @@ alpha = [0*(dB/cm), 0*(dB/cm);
          1*(dB/cm), 1*(dB/cm);
          3*(dB/cm), 3*(dB/cm)];
 
-[n_alpha, u] = size(alpha);
-[n_kl, u] = size(kL_factor);
+[n_alpha, z] = size(alpha);
+[n_kl, zz] = size(kL_factor);
 
 %% EXTINTION RATE SIMULATION : varying RF input, fixed alpha/coupling factor 
 
