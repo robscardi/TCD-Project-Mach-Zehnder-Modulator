@@ -41,13 +41,13 @@ E_i_laser = 1*V;
 % 0  - the second line has an attenuation constant of 0
 % -1 - the second line has a fixed attenuation constant
 % Default = 0
-same_loss_second_line  = 0;
+same_loss_second_line  = -1;
 
 
 % Fixed attenuation constant for the second line in [dB/cm]. 
 % Irrelevant if 'a_same_loss_second_line' is other than -1.
 % Default = 0 [dB/cm]
-fixed_loss_second_line = 0*(dB/cm);
+fixed_loss_second_line = 0.5*(dB/cm);
 
 % Coupling coefficient splitter
 kL_factor_s = [pi/4, (pi/4)*1.10, (pi/4)*0.90, (pi/4)*1.5];
@@ -86,7 +86,7 @@ for j = 1:numel(kL_factor_s)
             case 1
                 loss_2 = loss;
             case -1
-                loss_2 = fixed_loss_second_line;
+                loss_2 = (fixed_loss_second_line/8.6860000037)*Length;
             otherwise
                 assert(false, "INVALID 'same_loss_second_line' parameter");
         end
@@ -125,11 +125,8 @@ for j = 1:numel(kL_factor_s)
 end
 
 %% kL - Loss PLOTS    
-   
-    yBox = [10, 10, 40, 40, 10];
-    xBox = [0, alpha(end)*cm, alpha(end)*cm, 0, 0];
 
-    hfig1 = figure(Name="ER/loss - kL");
+hfig1 = figure(Name="ER/loss - kL");
     
     %Set figure config 
     picturewidth = 20; % set this parameter and keep it forever
@@ -138,10 +135,10 @@ end
     set(findall(hfig1,'-property','FontSize'),'FontSize',17) % adjust fontsize to your document
 
 
-    tiledlayout(1,2)
+ tiledlayout(1,2)
 
     %% Plot ER BAR
-    nexttile
+nexttile
     yline(10, ":r", "label","ER=10dB", "HandleVisibility","off", "LineWidth", 1)
     yline(40, ":r", "label","ER=40dB", "HandleVisibility","off", "LineWidth", 1)
     hold on
@@ -150,7 +147,7 @@ end
     end
 
     hold off
-    legend("Box","on", "FontSize",12, "Tag","Coupling factor")
+    legend("Box","on", "FontSize",10)
     grid on
     xlabel("loss [dB/cm]");
     ylabel("Extinction rate [dB]")
@@ -158,7 +155,7 @@ end
     fontname("CMU Sans Serif Demi Condensed")
    
     %% Plot ER CROSS
-    nexttile
+nexttile
 
     yline(10, ":r", "label","ER=10dB", "HandleVisibility","off", "LineWidth", 1)
     yline(40, ":r", "label","ER=40dB", "HandleVisibility","off", "LineWidth", 1)
@@ -167,7 +164,7 @@ end
         plot(alpha.*cm, ER_kL2(j,:),LineWidth=1.5 , DisplayName="kL Factor = " + kL_factor_s(j)/pi + "*pi")
     end
     hold off
-    legend("Box","on", "FontSize",12, "Tag","Coupling factor")
+    legend("Box","on", "FontSize",10)
     grid on
     xlabel("loss [dB/cm]");
     ylabel("Extinction rate [dB]")
@@ -176,11 +173,10 @@ end
 
     pos = get(hfig1,'Position');
     set(hfig1,'PaperPositionMode','Auto','PaperUnits','centimeters','PaperSize',[pos(3), pos(4)])
-    print(hfig1,'ER_alpha','-dpdf','-vector','-fillpage')
 
 
 %% PLOT output - loss - kL 
-    hfig2 = figure(Name="output / loss - kL ");
+hfig2 = figure(Name="output / loss - kL ");
 
     %Set figure config 
     picturewidth = 20; % set this parameter and keep it forever
@@ -189,67 +185,73 @@ end
     set(findall(hfig2,'-property','FontSize'),'FontSize',17) % adjust fontsize to your document
     fontname("CMU Sans Serif Demi Condensed")
 
-    tiledlayout(2,2)
+tiledlayout(2,2)
     
-    nexttile
-    plot(alpha.*cm, abs(result_vector_high(1,:,1)).^2, DisplayName="kL Factor = " + kL_factor_s(1)/pi + "pi", LineWidth=1.5)
+nexttile
+    plot(alpha.*cm, abs(result_vector_high(1,:,1)).^2, DisplayName="kL Factor = " + kL_factor_s(1)/pi + "*pi", LineWidth=1.5)
     hold on
     for j = (2:numel(kL_factor_s))
         plot(alpha.*cm, abs(result_vector_high(1,:,j)).^2, DisplayName="kL Factor = " + kL_factor_s(j)/pi + "*pi", LineWidth=1.5)
     end
+    ylim([0,1])
     hold off
     grid on
+    grid minor
     legend("Box","on", "Tag","Coupling factor", "FontName","CMU Sans Serif Demi Condensed")
     xlabel("Loss [dB/cm]")
     ylabel("Intensity output [(V/m)^2]" )
     title("Output high BAR")
     fontname("CMU Sans Serif Demi Condensed")
     
-    nexttile
-    plot(alpha.*cm, abs(result_vector_high(2,:,1)).^2, DisplayName="kL Factor = " + kL_factor_s(1)/pi + "pi", LineWidth=1.5)
+nexttile
+    plot(alpha.*cm, abs(result_vector_high(2,:,1)).^2, DisplayName="kL Factor = " + kL_factor_s(1)/pi + "*pi", LineWidth=1.5)
     hold on
     for j = (2:numel(kL_factor_s))
         plot(alpha.*cm, abs(result_vector_high(2,:,j)).^2, DisplayName="kL Factor = " + kL_factor_s(j)/pi + "*pi", LineWidth=1.5)
     end
+    ylim([0,1])
     hold off
     grid on
+    grid minor
     legend("Box","on", "Tag","Coupling factor", "FontName","CMU Sans Serif Demi Condensed")
     xlabel("Loss [dB/cm]")
     ylabel("Intensity output [(V/m)^2]" )
     title("Output high CROSS")
     fontname("CMU Sans Serif Demi Condensed")
 
-    nexttile
-    plot(alpha.*cm, abs(result_vector_low(1,:,1)).^2, DisplayName="kL Factor = " + kL_factor_s(1)/pi + "pi", LineWidth=1.5)
+nexttile
+    plot(alpha.*cm, abs(result_vector_low(1,:,1)).^2, DisplayName="kL Factor = " + kL_factor_s(1)/pi + "*pi", LineWidth=1.5)
     hold on
     for j = (2:numel(kL_factor_s))
         plot(alpha.*cm, abs(result_vector_low(1,:,j)).^2, DisplayName="kL Factor = " + kL_factor_s(j)/pi + "*pi", LineWidth=1.5)
     end
+    ylim([0,1])
     hold off
     grid on
+    grid minor
     legend("Box","on", "Tag","Coupling factor", "FontName","CMU Sans Serif Demi Condensed")
     xlabel("Loss [dB/cm]")
     ylabel("Intensity output [(V/m)^2]" )
     title("Output low BAR")
     fontname("CMU Sans Serif Demi Condensed")
 
-    nexttile
-    plot(alpha.*cm, abs(result_vector_low(2,:,1)).^2, DisplayName="kL Factor = " + kL_factor_s(1)/pi + "pi", LineWidth=1.5)
+nexttile
+    plot(alpha.*cm, abs(result_vector_low(2,:,1)).^2, DisplayName="kL Factor = " + kL_factor_s(1)/pi + "*pi", LineWidth=1.5)
     hold on
     for j = (2:numel(kL_factor_s))
         plot(alpha.*cm, abs(result_vector_low(2,:,j)).^2, DisplayName="kL Factor = " + kL_factor_s(j)/pi + "*pi", LineWidth=1.5)
     end
+    ylim([0,1])
     hold off
     grid on
+    grid minor
     legend("Box","on", "Tag","Coupling factor", "FontName","CMU Sans Serif Demi Condensed")
     xlabel("Loss [dB/cm]")
     ylabel("Intensity output [(V/m)^2]" )
     title("Output low CROSS")
     fontname("CMU Sans Serif Demi Condensed")
 
-
     pos = get(hfig2,'Position');
     set(hfig2,'PaperPositionMode','Auto','PaperUnits','centimeters','PaperSize',[pos(3), pos(4)])
-    print(hfig2,'RF_alpha','-dpdf','-vector','-fillpage')
 
 

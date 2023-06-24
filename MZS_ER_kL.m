@@ -42,12 +42,12 @@ E_i_laser = 1*V;
 % 0  - the second line has an attenuation constant of 0
 % -1 - the second line has a fixed attenuation constant
 % Default = 0
-same_loss_second_line = 0*(dB/cm);
+same_loss_second_line = 1;
 
 % Fixed attenuation constant for the second line in [dB/m]. 
 % Irrelevant if 'same_loss_second_line' is other than -1.
 % Default = 0 [dB/cm]
-fixed_loss_second_line = 0*(dB/cm);
+fixed_loss_second_line = 0.5*(dB/cm);
 
 % Set to 1, 0 or -1 to set the value of the attenuation constant of the
 % second line. 
@@ -87,7 +87,7 @@ for j = 1:numel(alpha)
         case 1
             loss_2 = loss;
         case -1
-            loss_2 = fixed_loss_second_line;
+            loss_2 = (fixed_loss_second_line/8.6860000037)*Length;
         otherwise
             assert(false, "INVALID 'same_loss_second_line' parameter");
     end
@@ -168,11 +168,13 @@ tiledlayout(1,2)
             LineWidth=1.5)
     end
     hold off
-    legend
+    leg = legend("Box","on");
+    set(leg, 'FontSize', 10);
     grid on
     xlabel("Splitter Coupling Factor / Pi")
     ylabel("Extinction rate [db]")
     title("Extinction rate BAR")
+    fontname("CMU Sans Serif Demi Condensed")
    
 
     %plot ER2
@@ -188,10 +190,12 @@ tiledlayout(1,2)
     end
     hold off
     grid on
-    legend
+    leg2 = legend("Box","on");
+    set(leg2, 'FontSize', 10);
     xlabel("Splitter Coupling Factor / Pi")
     ylabel("Extinction rate [db]")
     title("Extinction rate CROSS")
+    fontname("CMU Sans Serif Demi Condensed")
 
 %% PLOT output - loss - kL 
 hfig2 = figure(Name="output / loss - kL ");
@@ -199,8 +203,8 @@ hfig2 = figure(Name="output / loss - kL ");
     %Set figure config 
     picturewidth = 20; % set this parameter and keep it forever
     hw_ratio = 0.65; % feel free to play with this ratio
-    set(hfig1,'Units','centimeters','Position',[3 3 picturewidth hw_ratio*picturewidth])
-    set(findall(hfig1,'-property','FontSize'),'FontSize',17) % adjust fontsize to your document
+    set(hfig2,'Units','centimeters','Position',[3 3 picturewidth hw_ratio*picturewidth])
+    set(findall(hfig2,'-property','FontSize'),'FontSize',17) % adjust fontsize to your document
     fontname("CMU Sans Serif Demi Condensed")
 
 tiledlayout(2,2)
@@ -218,10 +222,12 @@ nexttile
     end
     hold off
     grid on
+    ylim([0,1])
     legend
     xlabel("Splitter Coupling Factor / Pi")
     ylabel("Intensity output [(V/m)^2]" )
     title("Output high BAR")
+    fontname("CMU Sans Serif Demi Condensed")
     
 nexttile
     plot(kL_factor./pi, abs(result_vector_high(2,:,1)).^2, ...
@@ -236,10 +242,12 @@ nexttile
     end
     hold off
     grid on
+    ylim([0,1])
     legend
     xlabel("Splitter Coupling Factor / Pi")
     ylabel("Intensity output [(V/m)^2]" )
     title("Output high CROSS")
+    fontname("CMU Sans Serif Demi Condensed")
 
 nexttile
     plot(kL_factor./pi, abs(result_vector_low(1,:,1)).^2, ...
@@ -255,10 +263,12 @@ nexttile
     end
     hold off
     grid on
+    ylim([0,1])
     legend
     xlabel("Splitter Coupling Factor / Pi")
     ylabel("Intensity output [(V/m)^2]" )
     title("Output low BAR")
+    fontname("CMU Sans Serif Demi Condensed")
 
 nexttile
     plot(kL_factor./pi, abs(result_vector_low(2,:,1)).^2, ...
@@ -274,9 +284,11 @@ nexttile
     end
     hold off
     grid on
+    ylim([0,1])
     legend
     xlabel("Splitter Coupling Factor / Pi")
     ylabel("Intensity output [(V/m)^2]" )
     title("Output low CROSS")
+    fontname("CMU Sans Serif Demi Condensed")
 
 

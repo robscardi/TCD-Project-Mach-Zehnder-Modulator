@@ -51,8 +51,8 @@ pi_half_delay_sample    = discrete_sample_delay(-pi/2, delay_factor, sample_time
 initial_buffer = 1024*100; % TIME DELAY BLOCK BUFFER
 
 %% INPUT, SAMPLE AND SIMULTATION TIME
-period      = 1/adj_frequency;  % ADJUSTED LASER PERIOD
-n_camp      = 25*round(period/sample_time);  % NUMBER OF SAMPLE
+period      = 1/adj_frequency;                  % ADJUSTED LASER PERIOD
+n_camp      = 25*round(period/sample_time);     % NUMBER OF SAMPLE
 
 bit_sample  = n_camp;                   % SAMPLE NUMBER PER BIT
 input_dim   = 40;                       % INPUT'S BITS NUMBER
