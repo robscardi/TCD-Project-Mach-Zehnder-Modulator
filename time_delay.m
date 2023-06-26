@@ -1,4 +1,4 @@
 function t = time_delay(phi, delay_factor) 
-    p = phi;
+    p = wrapTo2Pi(phi);
     t = p*delay_factor;
 end

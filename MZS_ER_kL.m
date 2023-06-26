@@ -42,19 +42,19 @@ E_i_laser = 1*V;
 % 0  - the second line has an attenuation constant of 0
 % -1 - the second line has a fixed attenuation constant
 % Default = 0
-same_loss_second_line = 1;
+same_loss_second_line = 0;
 
 % Fixed attenuation constant for the second line in [dB/m]. 
 % Irrelevant if 'same_loss_second_line' is other than -1.
 % Default = 0 [dB/cm]
 fixed_loss_second_line = 0.5*(dB/cm);
 
-% Set to 1, 0 or -1 to set the value of the attenuation constant of the
-% second line. 
+% Set to 1 or 0 or to set the value of the coupling factor of the 
+% combiner. 
 % 1  - the ratio between the CF of the splitter and combiner is constant
-% 0  - the combiner has a coupling factor of pi/4
+% 0  - the combiner has a coupling factor equals to kl_fixed_combiner
 % Default = 0
-coupling_splitter_combiner  = 1;
+coupling_splitter_combiner  = 0;
 
 % Fixed coupling factor for the combiner. 
 % Irrelevant if 'kL_equal_splitter_combiner' is other than -1.
@@ -96,7 +96,7 @@ for j = 1:numel(alpha)
         
         switch(coupling_splitter_combiner)
             case 0
-                kL_factor_c = pi/4;
+                kL_factor_c = kL_fixed_combiner;
             case 1
                 kL_factor_c = kL_factor_s/splitter_combiner_ratio;
             otherwise

@@ -1,6 +1,6 @@
 clearvars
 close all
-
+load_system("MZexample.slx")
 % Initialize the model's parameters
 %% UNIT MEASURE
 m   = 1;
@@ -27,8 +27,8 @@ delay_factor        = 1/(2*pi*adj_frequency);   % COMMON USED VALUE
 kL_factor_s = pi/4; % COUPLING FACTOR SPLITTER
 kL_factor_c = pi/4; % COUPLING FACTOR COMBINER
 
-loss_1  = 0*dB/m; % ATTENUATION COEFFICIENT FIRST LINE
-loss_2  = 0*dB/m; % ATTENUATION COEFFICIENT FIRST LINE
+loss_1  = 0.3*dB/m; % ATTENUATION COEFFICIENT FIRST LINE
+loss_2  = 0.3*dB/m; % ATTENUATION COEFFICIENT FIRST LINE
 
 Length  = 5*cm; % LINES LENGHT
 gap     = 6*um; % GAP BETWEEN DELAY LINE'S ELECTRODE
@@ -55,7 +55,7 @@ period      = 1/adj_frequency;                  % ADJUSTED LASER PERIOD
 n_camp      = 25*round(period/sample_time);     % NUMBER OF SAMPLE
 
 bit_sample  = n_camp;                   % SAMPLE NUMBER PER BIT
-input_dim   = 40;                       % INPUT'S BITS NUMBER
+input_dim   = 50;                       % INPUT'S BITS NUMBER
 bit_time    = sample_time*bit_sample;   % BIT TIME
 total_time  = input_dim*bit_time;       % TOTAL SIMULATION TIME
 

@@ -37,13 +37,11 @@ E_i_laser = 1*V;
 %% SETTINGS : varying RF input, fixed alpha/coupling factor
 
 
-kL_factor = [pi/4, (pi/4)*1.10;
-             (pi/4)*1.10, (pi/4)*1.20;
-             (pi/4)*0.90, (pi/4)*1;
+kL_factor = [
+             (pi/4), (pi/4);
              ];
-alpha = [0*(dB/cm), 0*(dB/cm);
-         0.5*(dB/cm),0.5*(dB/cm);
-         1*(dB/cm), 1*(dB/cm)];
+
+alpha = [0*(dB/cm), 0*(dB/cm);];
 
 [n_alpha, z] = size(alpha);
 [n_kl, zz] = size(kL_factor);
@@ -172,6 +170,7 @@ title("ER/RF CROSS")
 
     xline(RF_pi, ":r", "label","RF pi", "HandleVisibility","off", ...
         "LineWidth", 1.2)
+    xline(-RF_pi, ":r", "label", "-RF_p_i", "HandleVisibility","off","LineWidth",1.2)
     hold on
     
     for j = (1:n_alpha)
@@ -192,6 +191,7 @@ title("ER/RF CROSS")
 
     xline(RF_pi, ":r", "label","RF pi", "HandleVisibility","off", ...
         "LineWidth", 1.2)
+    xline(-RF_pi, ":r", "label", "-RF_p_i", "HandleVisibility","off","LineWidth",1.2)
     hold on
     
     for j = (1:n_alpha)
