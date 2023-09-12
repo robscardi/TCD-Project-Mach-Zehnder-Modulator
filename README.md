@@ -4,7 +4,7 @@ Final exam project for the Transmission and Communication Devices course @Polimi
 This repository contains several Matlab&copy; scripts that help with the analysis and study of the Mach-Zehnder Modulator and a Simulink&copy; <br />
   <br />
 __MZS_ER_alpha.m__, __MZS_ER_kL.m__, __MZS_ER_RF.m__ <br />
-These Matlab&copy; These scripts calculate and plot the extinction ratio and the intensity of the electric field for each output
+These scripts calculate and plot the extinction ratio and the intensity of the electric field for each output
 of a Mach-Zehnder modulator sweeping over three groups of parameters: 
 in order, the attenuation constant of the device's lines, the coupling factor of the splitter and combiner, and the value of the RF digital high input <br />
   <br />

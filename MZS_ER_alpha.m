@@ -152,7 +152,6 @@ nexttile
     xlabel("loss [dB/cm]");
     ylabel("Extinction rate [dB]")
     title("Extinction rate BAR")
-    fontname("CMU Sans Serif Demi Condensed")
    
     %% Plot ER CROSS
 nexttile
@@ -169,7 +168,6 @@ nexttile
     xlabel("loss [dB/cm]");
     ylabel("Extinction rate [dB]")
     title("Extinction rate CROSS")
-    fontname("CMU Sans Serif Demi Condensed")
 
     pos = get(hfig1,'Position');
     set(hfig1,'PaperPositionMode','Auto','PaperUnits','centimeters','PaperSize',[pos(3), pos(4)])
@@ -183,7 +181,6 @@ hfig2 = figure(Name="output / loss - kL ");
     hw_ratio = 0.65; % feel free to play with this ratio
     set(hfig2,'Units','centimeters','Position',[3 3 picturewidth hw_ratio*picturewidth])
     set(findall(hfig2,'-property','FontSize'),'FontSize',17) % adjust fontsize to your document
-    fontname("CMU Sans Serif Demi Condensed")
 
 tiledlayout(2,2)
     
@@ -201,7 +198,6 @@ nexttile
     xlabel("Loss [dB/cm]")
     ylabel("Intensity output [(V/m)^2]" )
     title("Output high BAR")
-    fontname("CMU Sans Serif Demi Condensed")
     
 nexttile
     plot(alpha.*cm, abs(result_vector_high(2,:,1)).^2, DisplayName="kL Factor = " + kL_factor_s(1)/pi + "*pi", LineWidth=1.5)
@@ -217,7 +213,6 @@ nexttile
     xlabel("Loss [dB/cm]")
     ylabel("Intensity output [(V/m)^2]" )
     title("Output high CROSS")
-    fontname("CMU Sans Serif Demi Condensed")
 
 nexttile
     plot(alpha.*cm, abs(result_vector_low(1,:,1)).^2, DisplayName="kL Factor = " + kL_factor_s(1)/pi + "*pi", LineWidth=1.5)
@@ -233,7 +228,6 @@ nexttile
     xlabel("Loss [dB/cm]")
     ylabel("Intensity output [(V/m)^2]" )
     title("Output low BAR")
-    fontname("CMU Sans Serif Demi Condensed")
 
 nexttile
     plot(alpha.*cm, abs(result_vector_low(2,:,1)).^2, DisplayName="kL Factor = " + kL_factor_s(1)/pi + "*pi", LineWidth=1.5)
@@ -249,7 +243,6 @@ nexttile
     xlabel("Loss [dB/cm]")
     ylabel("Intensity output [(V/m)^2]" )
     title("Output low CROSS")
-    fontname("CMU Sans Serif Demi Condensed")
 
     pos = get(hfig2,'Position');
     set(hfig2,'PaperPositionMode','Auto','PaperUnits','centimeters','PaperSize',[pos(3), pos(4)])

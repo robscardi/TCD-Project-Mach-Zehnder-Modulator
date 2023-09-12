@@ -64,7 +64,6 @@ picturewidth = 20; % set this parameter and keep it forever
 hw_ratio = 0.65; % feel free to play with this ratio
 set(hfig,'Units','centimeters','Position',[3 3 picturewidth hw_ratio*picturewidth])
 set(findall(hfig,'-property','FontSize'),'FontSize',17) % adjust fontsize to your document
-fontname("CMU Sans Serif Demi Condensed")
 
 tiledlayout(2,1)
 
@@ -74,7 +73,6 @@ ylabel('Magnitude/Max')
 xlabel('Frequency [Hz]')
 xlim auto
 ylim auto
-fontname("CMU Sans Serif Demi Condensed")
 
 nexttile
 plot(fshift_o, (out_ft./max_out), 'LineWidth', 1.5)
@@ -91,7 +89,6 @@ ylabel('Magnitude/Max')
 xlabel('Frequency [Hz]')
 xlim auto
 ylim auto
-fontname("CMU Sans Serif Demi Condensed")
 
 
 pos = get(hfig,'Position');

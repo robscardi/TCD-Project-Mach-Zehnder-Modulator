@@ -151,7 +151,7 @@ hfig1 = figure(Name="ER/kL_factor - loss");
     hw_ratio = 0.65; % feel free to play with this ratio
     set(hfig1,'Units','centimeters','Position',[3 3 picturewidth hw_ratio*picturewidth])
     set(findall(hfig1,'-property','FontSize'),'FontSize',17) % adjust fontsize to your document
-    fontname("CMU Sans Serif Demi Condensed")
+
 
 
 tiledlayout(1,2)
@@ -174,7 +174,7 @@ tiledlayout(1,2)
     xlabel("Splitter Coupling Factor / Pi")
     ylabel("Extinction rate [db]")
     title("Extinction rate BAR")
-    fontname("CMU Sans Serif Demi Condensed")
+
    
 
     %plot ER2
@@ -195,7 +195,7 @@ tiledlayout(1,2)
     xlabel("Splitter Coupling Factor / Pi")
     ylabel("Extinction rate [db]")
     title("Extinction rate CROSS")
-    fontname("CMU Sans Serif Demi Condensed")
+
 
 %% PLOT output - loss - kL 
 hfig2 = figure(Name="output / loss - kL ");
@@ -205,7 +205,7 @@ hfig2 = figure(Name="output / loss - kL ");
     hw_ratio = 0.65; % feel free to play with this ratio
     set(hfig2,'Units','centimeters','Position',[3 3 picturewidth hw_ratio*picturewidth])
     set(findall(hfig2,'-property','FontSize'),'FontSize',17) % adjust fontsize to your document
-    fontname("CMU Sans Serif Demi Condensed")
+
 
 tiledlayout(2,2)
     
@@ -227,7 +227,7 @@ nexttile
     xlabel("Splitter Coupling Factor / Pi")
     ylabel("Intensity output [(V/m)^2]" )
     title("Output high BAR")
-    fontname("CMU Sans Serif Demi Condensed")
+
     
 nexttile
     plot(kL_factor./pi, abs(result_vector_high(2,:,1)).^2, ...
@@ -247,7 +247,7 @@ nexttile
     xlabel("Splitter Coupling Factor / Pi")
     ylabel("Intensity output [(V/m)^2]" )
     title("Output high CROSS")
-    fontname("CMU Sans Serif Demi Condensed")
+
 
 nexttile
     plot(kL_factor./pi, abs(result_vector_low(1,:,1)).^2, ...
@@ -268,7 +268,7 @@ nexttile
     xlabel("Splitter Coupling Factor / Pi")
     ylabel("Intensity output [(V/m)^2]" )
     title("Output low BAR")
-    fontname("CMU Sans Serif Demi Condensed")
+
 
 nexttile
     plot(kL_factor./pi, abs(result_vector_low(2,:,1)).^2, ...
@@ -289,6 +289,6 @@ nexttile
     xlabel("Splitter Coupling Factor / Pi")
     ylabel("Intensity output [(V/m)^2]" )
     title("Output low CROSS")
-    fontname("CMU Sans Serif Demi Condensed")
+
 
 
